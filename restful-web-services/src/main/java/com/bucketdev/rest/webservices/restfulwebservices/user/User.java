@@ -1,12 +1,21 @@
 package com.bucketdev.rest.webservices.restfulwebservices.user;
 
 import java.util.Date;
+import java.util.List;
+
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
+
+import com.bucketdev.rest.webservices.restfulwebservices.post.Post;
 
 public class User {
 	
 	private Integer id;
+	@Size(min = 2, message = "Name should have at least 2 characters")
 	private String name;
+	@Past
 	private Date birthDate;
+	private List<Post> posts;
 	
 	public User(Integer id, String name, Date birthDate) {
 		super();
@@ -35,6 +44,15 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", name=" + name + ", birthDate=" + birthDate + "]";
+	}
+	public List<Post> getPosts() {
+		return posts;
+	}
+	public void setPosts(List<Post> posts) {
+		this.posts = posts;
+	}
+	public void addPost(Post post) {
+		this.posts.add(post);
 	}
 	
 
