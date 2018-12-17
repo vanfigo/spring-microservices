@@ -38,9 +38,11 @@ public class UserResource {
 		User user = service.findOne(id);
 		if(user == null)
 			throw new UserNotFoundException("id: " + id);
+		
 		Resource<User> resource = new Resource<User>(user);
 		ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).retreiveAllUsers());
 		resource.add(linkTo.withRel("all-users"));
+		
 		return resource;
 	}
 	
