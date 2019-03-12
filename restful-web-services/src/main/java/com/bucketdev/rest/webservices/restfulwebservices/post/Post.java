@@ -1,13 +1,21 @@
 package com.bucketdev.rest.webservices.restfulwebservices.post;
 
+import com.bucketdev.rest.webservices.restfulwebservices.user.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
+
+@Entity
 public class Post {
 
+	@Id
+	@GeneratedValue
 	private Integer id;
+	private String description;
 
-	public Post(Integer id) {
-		super();
-		this.id = id;
-	}
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JsonIgnore
+	private User user;
 
 	public Integer getId() {
 		return id;
@@ -16,5 +24,20 @@ public class Post {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 }
